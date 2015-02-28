@@ -8,7 +8,7 @@
             <p><b>Settings</b></p>
             
        
-                <label for="toggletime">Naam laten zien</label>
+                <label for="toggletime">Beschrijving laten zien</label>
                 <select id="togglename">
                     <option value="on">Aan</option>
                     <option value="off">Uit</option>
@@ -23,9 +23,16 @@
 
 
 <script type="text/javascript">
+
+function setSettings()
+{
+   var settings = JSON.parse(localStorage.getItem("settings"));
+   $("#togglename").val(settings.ShowDescription);
+   $("#toggletime").val(settings.ShowTime);
+}
+
 $("#togglename").change(function()
 {
-    alert("oi");
     var value = $('#togglename').val();
     var settings = JSON.parse(localStorage.getItem("settings"));
     settings.ShowDescription = value;
@@ -34,19 +41,17 @@ $("#togglename").change(function()
 
 $("#toggletime").change(function()
 {
-    
     var value = $('#toggletime').val();
     var settings = JSON.parse(localStorage.getItem("settings"));
     settings.ShowTime = value;
     localStorage.setItem("settings", JSON.stringify(settings));
-    alert("Tijd is nu " + settings.ShowTime);
 });
 $("#goback").click(function()
 {
-    alert("Go bAck");
     history.go(-1);
     navigator.app.backHistory();
 });
+setSettings();
 </script>
             </div>
         </div>
