@@ -1,0 +1,27 @@
+
+<script src="js/database.js"></script>
+<div class="demo-wrapper" data-role="page">
+        <div class="header" data-role="header">
+            <span class="open left"><button id="goback2" style="height:20px;!">Back</button></span>
+            <span class="title">To Do lijst app</span>
+        </div>
+        <div class="" id="todo" data-role="content">
+            <p><b>Maak een nieuwe todo aan</b></p>
+            
+            <input id="txtName" type="text" placeholder="Name"/>
+            <input id="txtDescription" type="text" placeholder="Description"/>
+            <input id="txtTime" type="text" placeholder="Time"/>
+            
+            <button id="btnSubmit">Opslaan</button>
+       
+            
+            <script type="text/javascript">
+            $("#goback2").click(function()
+            {
+                history.go(-1);
+                navigator.app.backHistory();
+            });
+            </script>
+        </div>
+    </div>
+</div>           
