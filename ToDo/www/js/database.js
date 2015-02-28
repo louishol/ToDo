@@ -31,7 +31,9 @@ function initializeDatabase() {
     db.transaction(function(trans)
     { 
         trans.executeSql('CREATE TABLE IF NOT EXISTS ToDo (name, description, time)');
-        getAllToDos(trans);
+        //getAllToDos(trans);
+
+        alert("table aangemaakt");
     }, errorCB);
 }
 
