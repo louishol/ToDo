@@ -4,24 +4,19 @@ var db;
 $(document).ready(function()
 {
     document.addEventListener('deviceready', onDeviceReady, false);
-    onDeviceReady();
 });
 
 
 function onDeviceReady(){
+    alert("Device ready");
     initializeDatabase();
 }
 
 
 function btnSubmitClicked(){
-
-    alert("Klik");
     var name = $('#txtName').val();
     var description = $('#txtDescription').val();
     var time = $('#txtTime').val();
-
-
-    alert("Dit is de naam"  + name);
     addToDo(name, description, time);
     $('#txtName').val('');
     $('#txtDescription').val('');
@@ -70,7 +65,6 @@ function getAllToDos(trans) {
 function addToDo(name, description, time){
     db.transaction(function(trans){ 
         trans.executeSql('INSERT INTO ToDo (name, description, time) VALUES (?,?,?)', [ name, description, time ]);
-        alert("Ja");
     }, errorCB);
 }
 function clearTable(){
