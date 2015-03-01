@@ -4,6 +4,7 @@ var db;
 $(document).ready(function()
 {
     document.addEventListener('deviceready', onDeviceReady, false);
+    alert("document ready");
 });
 
 
