@@ -1,17 +1,14 @@
 
 var db;
 
+
 $(document).ready(function()
 {
-    document.addEventListener('deviceready', onDeviceReady, false);
-    alert("document ready");
+    document.addEventListener("deviceready", function(){
+      alert("Device ready");
+      initializeDatabase();
+      },true);
 });
-
-
-function onDeviceReady(){
-    alert("Device ready");
-    initializeDatabase();
-}
 
 
 function btnSubmitClicked(){
