@@ -4,10 +4,12 @@ var db;
 
 $(document).ready(function()
 {
-    document.addEventListener("deviceready", function(){
-      alert("Device ready");
-      initializeDatabase();
-      },true);
+    // document.addEventListener("deviceready", function(){
+    //   initializeDatabase();
+    //   },true);
+
+    alert("document ready");
+    initializeDatabase();
 });
 
 
