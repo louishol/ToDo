@@ -26,7 +26,6 @@
                 <ul>
                     <li class="profile"><a href="settings.html" title="Profile">Setting</a></li>
                     <li class="profile"><a href="addtodo.html" title="Profile">Nieuwe todo</a></li>
-                    <li id="refresh" class="profile"><button>refresh</button></li>
                 </ul>
             </div>
             <div class="header" data-role="header">
@@ -35,6 +34,21 @@
             </div>
             <div class="" id="todo" data-role="content">
                 <p><b>Hier een lijst met alles wat ik nog moet doen!</b></p>
+                 <table id="results">
+                    <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Beschrijving</th>
+                            <th>Tijdstip</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                </table>
+                <button id="refresh">Reload</button>
+                <button id="btnClear">Clear</button>
+
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
@@ -43,44 +57,19 @@
         <script type="text/javascript">
             app.initialize();
             
-            if(localStorage.getItem("todolist") === null)
-            {
-                var todos = '{"todo" : [{ "Naam": "Afwassen", "Beschrijving": "Sam moet altijd lang afwassen", "Tijdstip":"14:46"},';
-                todos += '{ "Naam": "Mobile1 Maken", "Beschrijving": "Opgegeven huiswerk voor mobile1 maken", "Tijdstip":"16:00"},';
-                todos +='{ "Naam": "Gamen", "Beschrijving": "Na het huiswerk gaan gamen", "Tijdstip":"18:50"}]}';
-                
-                var settings = '{ "ShowDescription": "on", "ShowTime": "on" }';
-
-                localStorage.setItem("todolist", todos);
-                localStorage.setItem("settings", settings);
-            }
-            printToDo();
-        
-            function printToDo()
-            {
-
-                    var todos = JSON.parse(localStorage.getItem("todolist"));
-                    var settings = JSON.parse(localStorage.getItem("settings"));
-
-                    for(var todo in todos.todo)
-                    {
-                        var newtodo = "Naam : " + todos.todo[todo].Naam;
-
-                        if(settings.ShowDescription === "on")
-                        {
-                            newtodo += " | Beschrijving : " + todos.todo[todo].Beschrijving;
-                        } 
-                        if(settings.ShowTime === "on")
-                        {
-                            newtodo += "| Om " + todos.todo[todo].Tijdstip;
-                        }
-
-                        $("#todo").append("<p>" + newtodo + "</p>");
-                    }
-            }
+             if(localStorage.getItem("settings") === null)
+             {
+                 var settings = '{ "ShowDescription": "on", "ShowTime": "on" }';
+                 localStorage.setItem("settings", settings);
+             }
             $("#refresh").click(function()
             {
                 location.reload();
+            });
+            $('#btnClear').on("click", function()
+            {
+                clearTable();
+                $("#refresh").click();
             });
         </script>
     </body>
