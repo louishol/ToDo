@@ -7,7 +7,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady(){
     alert("Device ready");
     initializeDatabase();
-    $('#btnSubmit').click(btnSubmitClicked);
+    $('#btnSubmit').on("click", btnSubmitClicked);
 }
 
 
@@ -18,6 +18,8 @@ function btnSubmitClicked(){
     var description = $('#txtDescription').val();
     var time = $('#txtTime').val();
 
+
+    alert("Dit is de naam"  + name);
     addToDo(name, description, time);
     $('#txtName').val('');
     $('#txtDescription').val('');
@@ -34,7 +36,6 @@ function initializeDatabase() {
 
         alert("table aangemaakt");
         getAllToDos(trans);
-
         alert("Alles opgehaald");
     }, errorCB);
 }
@@ -47,21 +48,25 @@ function errorCB(err) {
 
 function getAllToDos(trans) {
     trans.executeSql('SELECT * FROM ToDo', [], function(trans, results){
-        var htmlRows = '';
-        var len = results.rows.length;
-        var settings = JSON.parse(localStorage.getItem("settings"));
-        $("#todo").clear();
-        for (var i=0; i<len; i++){
-            var newtodo = "Naam : " + results.rows.item(i).name;
-            if(settings.ShowDescription === "on")
-            {
-                newtodo += " | Beschrijving : " + results.rows.item(i).description;
-            }
-            if(settings.ShowTime === "on")
-            {
-                newtodo += "| Om " + results.rows.item(i).time;
-            }
-            $("#todo").append("<p>" + newtodo + "</p>");
+        // var htmlRows = '';
+        // var len = results.rows.length;
+        // var settings = JSON.parse(localStorage.getItem("settings"));
+        // $("#todo").clear();
+
+        // alert("len " : len + " settings " + settings);
+        // for (var i=0; i<len; i++){
+        //     var newtodo = "Naam : " + results.rows.item(i).name;
+
+
+        //     if(settings.ShowDescription === "on")
+        //     {
+        //         newtodo += " | Beschrijving : " + results.rows.item(i).description;
+        //     }
+        //     if(settings.ShowTime === "on")
+        //     {
+        //         newtodo += "| Om " + results.rows.item(i).time;
+        //     }
+        //     $("#todo").append("<p>" + newtodo + "</p>");
         }
     }, errorCB);
 }
