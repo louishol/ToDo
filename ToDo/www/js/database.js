@@ -8,7 +8,6 @@ $(document).ready(function()
     //   initializeDatabase();
     //   },true);
 
-    alert("document ready");
     initializeDatabase();
 });
 
